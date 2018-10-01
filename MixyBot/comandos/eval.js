@@ -12,7 +12,9 @@ if (message.content.includes('config.token')) {
         } else {
             var code = message.content.split(' ').slice(1).join(' ')
             try {
-                message.channel.sendMessage(eval(code));
+				var evaled = eval(code)
+				if(evaled.includes(bot.token)) return;
+                message.channel.sendMessage(evaled);
             } catch (err) {
                 message.channel.sendMessage(`:x: | ${err}`);
             }}
